@@ -9,6 +9,9 @@
   display: flex;
   font-family: sans-serif;
   align-items: center;
+  /* background-image: url("../assets/images/cocktail-glasses.jpg"); */
+  background-size: cover;
+  background-position: center;
 }
 
 h1 {
@@ -26,17 +29,13 @@ h1 {
 }
 
 .drink {
-  width: 400px;
-}
-
-.liquor {
-  width: 150px;
+  width: 600px;
 }
 
 .search-btn {
   height: 50px;
   border-radius: 50%;
-  width: 70px;
+  width: 55px;
   /* border: none;
   background: ;
   color: ; */
