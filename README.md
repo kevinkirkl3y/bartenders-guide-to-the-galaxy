@@ -12,9 +12,13 @@
 
 | Describe: | Input | Output |
 | :-----------------------------------| :------------- | :------------- |
-
-
-
+| getDrinksByIngredient |||
+| should correctly display a list of drinks with selected ingredient | ingredient = rum | drink = pina colada etc. |
+| getDrinksByName |||
+| should correctly display a list of drinks by name | "old fashioned" | drink = Old fashioned |
+| getInstructionsByName |||
+| should correctly display ingredients, amounts and instructions for a specific drink |||
+| should correctly tell user if the searched for drink does not exist | "oldd fashioned" | "that drink does not exist" | 
 
 
 
