@@ -1,3 +1,48 @@
-body {
-  background-color: burlywood;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 100vh;
+  justify-content: center;
+  display: flex;
+  font-family: sans-serif;
+  align-items: center;
+}
+
+h1 {
+  font-size: 45px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+.search {
+  height: 50px;
+  padding: 10px;
+  /* border: none; */
+  border-radius: 25px;
+  /* outline: none; */
+}
+
+.drink {
+  width: 400px;
+}
+
+.liquor {
+  width: 150px;
+}
+
+.search-btn {
+  height: 50px;
+  border-radius: 50%;
+  width: 70px;
+  /* border: none;
+  background: ;
+  color: ; */
+}
+
+.search-btn:hover{
+  background: #2A9D8F;
+  cursor: pointer;
 }
