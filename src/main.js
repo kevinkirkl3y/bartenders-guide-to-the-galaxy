@@ -22,11 +22,22 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-function showResponse () {
+function showDrinkByName (searchNameResponse) {
   if(searchNameResponse.drinks[0].strDrink) {
-    $('.showResponse').append(``)
+    let d;
+    let drinkList = [];
+    for (d = 0; d<searchNameResponse.drinks.length; d++) {
+      drinkList.push(searchNameResponse.drinks[d].strDrink);
+    }
+    console.log(drinkList);
   } else {
   $('.showErrors').append(`<p>`)
+  }
+}
+function showDrinkInformation (searchNameResponse) {
+  if(searchNameResponse.drinks[0].strDrink) {
+    console.log(searchNameResponse.drinks[0].strInstructions);
+    
   }
 }
 
@@ -55,10 +66,10 @@ $(document).ready(function() {
         displayErrors(error.message)
       })
   })
-    let drinkName = "White Russian";
-    (async function() {
-      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-      showResponse(drinkName);
-      console.log(searchNameResponse.drinks[0].strDrink);
-    })();
+  let drinkName = "White Russian";
+  (async function() {
+    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+    showDrinkByName(searchNameResponse);
+    showDrinkInformation(searchNameResponse);
+  })();
 });
