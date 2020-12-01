@@ -24,13 +24,13 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-function showDrinkByName (searchNameResponse) {
+export function showDrinkByName (searchNameResponse) {
   if(searchNameResponse.drinks[0].strDrink) {
     let drinkList = [];
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-    console.log(drinkList);
+    console.log(drinkList); // This will be where/how our drink names will be displayed. We would like them clickable so they pull up further info when selected. 
   } else {
   $('.showErrors').append(`<p>`)
   }
@@ -44,7 +44,7 @@ function showDrinkInformation (searchNameResponse) {
       let ingredients = searchNameResponse.drinks[i].strIngredient1;
       drinkInfo.push(`${instructions} Use ${measurements} of ${ingredients}`);
     }
-    console.log(drinkInfo);
+    console.log(drinkInfo); //This will be attached to the toggle functionality of the showDrinkByName response. Providing information after drink has been selected. 
     
   }
 }
@@ -74,7 +74,7 @@ $(document).ready(function() {
         displayErrors(error.message)
       })
   })
-  let drinkName = "White Russian";
+  let drinkName = "White Russian"; // $('#name').val();
   (async function() {
     const searchNameResponse = await SearchName.getDrinksByName(drinkName);
     showDrinkByName(searchNameResponse);
