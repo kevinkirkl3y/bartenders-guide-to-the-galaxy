@@ -7,18 +7,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <form id="searchBar">
-        <h1>Bartender's Guide to the Galaxy</h1>
-        <!-- <h2>"Never forget your bar towel."</h2> -->
-        <div class="form-box">
-          <div class="dropdown">
-          <input type="text" class="search drink" placeholder="What will you drink today?">
-          <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
+  <div class="header">
+    <form id="searchBar">
+      <h1>Bartender's Guide to the Galaxy</h1>
+      <blockquote class="blockquote">
+        <p>"Never forget your bar towel."</p>
+        <footer class="blockquote-footer">Group Quote</footer>
+      </blockquote>
+      <div class="form-box">
+        <div class="dropdown">
+        <input type="text" class="search drink" placeholder="What will you drink today?">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search by...</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita">Ingredient</a>
+          <a class="dropdown-item" href="https://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka">Drink Name</a>
+          <a class="dropdown-item" href="https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink">Category</a>
         </div>
-      </form>
-    </div>
+        <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </form>
   </div>
 </body>
 </html>
