@@ -3,8 +3,8 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import SearchName from './js/name-service.js';
-import IngredientService from './ingredient-service.js';
-import DrinksByIngredient from './cocktail-by-ingredient-service'
+import IngredientService from './js/ingredient-service.js';
+import DrinksByIngredient from './js/cocktail-by-ingredient-service'
 
 function getIngredients(response) {
   let values = Object.values(response.drinks).map((value)=> `<option value=${value}>${value}</option>`);
