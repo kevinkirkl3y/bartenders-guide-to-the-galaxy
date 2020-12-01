@@ -24,11 +24,28 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-function showResponse (drink) {
-  if(response.drinks[0].strDrink) {
-    $('.showResponse').append(``)
+function showDrinkByName (searchNameResponse) {
+  if(searchNameResponse.drinks[0].strDrink) {
+    let drinkList = [];
+    for (let d = 0; d<searchNameResponse.drinks.length; d++) {
+      drinkList.push(searchNameResponse.drinks[d].strDrink);
+    }
+    console.log(drinkList);
   } else {
   $('.showErrors').append(`<p>`)
+  }
+}
+function showDrinkInformation (searchNameResponse) {
+  if(searchNameResponse.drinks[0].strDrink) {
+    let drinkInfo = [];
+    for (let i =0; i<searchNameResponse.drinks.length; i++ ) { 
+      let instructions = searchNameResponse.drinks[i].strInstructions;
+      let measurements = searchNameResponse.drinks[i].strMeasure1;
+      let ingredients = searchNameResponse.drinks[i].strIngredient1;
+      drinkInfo.push(`${instructions} Use ${measurements} of ${ingredients}`);
+    }
+    console.log(drinkInfo);
+    
   }
 }
 
@@ -46,6 +63,7 @@ $(document).ready(function() {
   $('#findDrink').click(function() {
     let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
+<<<<<<< HEAD
     .then(function(drinkResponse) {
       if (drinkResponse instanceof Error) {
         throw Error(`CocktailDB API error: ${drinkResponse.message}`);
@@ -62,5 +80,23 @@ $(document).ready(function() {
       showResponse(drink);
       console.log(response.drinks[0].strDrink);
     })();
+=======
+      .then(function(drinkResponse) {
+        if (drinkResponse instanceof Error) {
+          throw Error(`CocktailDB API error: ${drinkResponse.message}`);
+        }
+        const drinkListByIngredient = drinkResponse.drinks;
+        displayDrinks(drinkListByIngredient);
+      })
+      .catch(function(error) {
+        displayErrors(error.message)
+      })
+>>>>>>> c0149e04af7000e81cb226ee67ed2e2a55ea4673
   })
+  let drinkName = "White Russian";
+  (async function() {
+    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+    showDrinkByName(searchNameResponse);
+    showDrinkInformation(searchNameResponse);
+  })();
 });
