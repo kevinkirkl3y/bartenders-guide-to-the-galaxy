@@ -22,8 +22,8 @@ function displayDrinks(response) { //does this accurately display drinks?!
     let mySet = new Set(); //empty object
     for (let i=0; i<10; i++) { 
       let j = Math.floor(Math.random() * response.length); //random number * length
-      if(mySet.has(j)===true){ 
-        return i-1
+      if(mySet.has(j)){ 
+        i--
       } else {
         mySet.add(j);
         $('.drink-results').append(response[j].strDrink);
