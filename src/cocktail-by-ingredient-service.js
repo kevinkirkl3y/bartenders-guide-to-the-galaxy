@@ -1,6 +1,6 @@
-export default class IngredientService {
-  static async getAllIngredients() {
-    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list`)
+export default class DrinksByIngredient {
+  static async findDrink(query) {
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${query}`)
       .then(function(response) {
         if (!response.ok) {
           throw Error(response.statusText);
