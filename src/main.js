@@ -24,11 +24,28 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-function showResponse (drink) {
-  if(response.drinks[0].strDrink) {
-    $('.showResponse').append(``)
+function showDrinkByName (searchNameResponse) {
+  if(searchNameResponse.drinks[0].strDrink) {
+    let drinkList = [];
+    for (let d = 0; d<searchNameResponse.drinks.length; d++) {
+      drinkList.push(searchNameResponse.drinks[d].strDrink);
+    }
+    console.log(drinkList);
   } else {
   $('.showErrors').append(`<p>`)
+  }
+}
+function showDrinkInformation (searchNameResponse) {
+  if(searchNameResponse.drinks[0].strDrink) {
+    let drinkInfo = [];
+    for (let i =0; i<searchNameResponse.drinks.length; i++ ) { 
+      let instructions = searchNameResponse.drinks[i].strInstructions;
+      let measurements = searchNameResponse.drinks[i].strMeasure1;
+      let ingredients = searchNameResponse.drinks[i].strIngredient1;
+      drinkInfo.push(`${instructions} Use ${measurements} of ${ingredients}`);
+    }
+    console.log(drinkInfo);
+    
   }
 }
 
@@ -56,11 +73,11 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message)
       })
-    let drink = "White Russian";
-    (async function() {
-      const response = await SearchName.getDrinksByName(drink);
-      showResponse(drink);
-      console.log(response.drinks[0].strDrink);
-    })();
   })
+  let drinkName = "White Russian";
+  (async function() {
+    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+    showDrinkByName(searchNameResponse);
+    showDrinkInformation(searchNameResponse);
+  })();
 });
