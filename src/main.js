@@ -7,8 +7,10 @@ import IngredientService from './js/ingredient-service.js';
 import DrinksByIngredient from './js/cocktail-by-ingredient-service'
 
 function getIngredients(response) {
-  let values = Object.values(response.drinks).map((value)=> `<option value=${value}>${value}</option>`);
-  $('select').append(values);
+  for (let i=1; i <= response.drinks.length - 1; i += 1) {
+    let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value}>${value}</option>`);
+    $('select').append(values);
+  }
 }
 
 function displayDrinks(response) { //does this accurately display drinks?!
