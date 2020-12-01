@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartender's Guide to the Galaxy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+<body>
+  <div class="header">
+    <form id="searchBar">
+      <h1 class="glow">Bartender's Guide to the Galaxy</h1>
+      <blockquote class="blockquote">
+        <p>"Never forget your bar towel."</p>
+      </blockquote>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn btn-primary dropdown-toggle search-btn search" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" id="name">Drink Name</a>
+            <a class="dropdown-item" id="ingredients">Ingredients</a>
+          </div>
+        </div>
+        <input type="text" class="form-control search" aria-label="Text input with dropdown button">
+      </div>
+    </form>
+  </div>
+  <div id="results"></div>
+</body>
+</html>
