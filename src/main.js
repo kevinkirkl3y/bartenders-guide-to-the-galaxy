@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import SearchName from './js/name-service.js';
 import IngredientService from './ingredient-service.js';
 import DrinksByIngredient from './cocktail-by-ingredient-service'
 
@@ -19,6 +20,14 @@ function displayDrinks(response) { //does this accurately display drinks?!
 
 function displayErrors(error) {
   $('.show-errors').text(`${error}`);
+}
+
+function showResponse (drink) {
+  if(response.drinks[0].strDrink) {
+    $('.showResponse').append(``)
+  } else {
+  $('.showErrors').append(`<p>`)
+  }
 }
 
 $(document).ready(function() {
@@ -45,6 +54,11 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message)
       })
-
+    let drink = "White Russian";
+    (async function() {
+      const response = await SearchName.getDrinksByName(drink);
+      showResponse(drink);
+      console.log(response.drinks[0].strDrink);
+    })();
   })
 });
