@@ -22,8 +22,8 @@ function displayErrors(error) {
   $('.show-errors').text(`${error}`);
 }
 
-function showResponse (drink) {
-  if(response.drinks[0].strDrink) {
+function showResponse () {
+  if(searchNameResponse.drinks[0].strDrink) {
     $('.showResponse').append(``)
   } else {
   $('.showErrors').append(`<p>`)
@@ -54,11 +54,11 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message)
       })
-    let drink = "White Russian";
-    (async function() {
-      const response = await SearchName.getDrinksByName(drink);
-      showResponse(drink);
-      console.log(response.drinks[0].strDrink);
-    })();
   })
+    let drinkName = "White Russian";
+    (async function() {
+      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+      showResponse(drinkName);
+      console.log(searchNameResponse.drinks[0].strDrink);
+    })();
 });
