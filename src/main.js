@@ -24,9 +24,8 @@ function displayErrors(error) {
 
 function showDrinkByName (searchNameResponse) {
   if(searchNameResponse.drinks[0].strDrink) {
-    let d;
     let drinkList = [];
-    for (d = 0; d<searchNameResponse.drinks.length; d++) {
+    for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
     console.log(drinkList);
@@ -36,7 +35,14 @@ function showDrinkByName (searchNameResponse) {
 }
 function showDrinkInformation (searchNameResponse) {
   if(searchNameResponse.drinks[0].strDrink) {
-    console.log(searchNameResponse.drinks[0].strInstructions);
+    let drinkInfo = [];
+    for (let i =0; i<searchNameResponse.drinks.length; i++ ) { 
+      let instructions = searchNameResponse.drinks[i].strInstructions;
+      let measurements = searchNameResponse.drinks[i].strMeasure1;
+      let ingredients = searchNameResponse.drinks[i].strIngredient1;
+      drinkInfo.push(`${instructions} Use ${measurements} of ${ingredients}`);
+    }
+    console.log(drinkInfo);
     
   }
 }
