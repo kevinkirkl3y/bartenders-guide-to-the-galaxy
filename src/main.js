@@ -44,18 +44,18 @@ $(document).ready(function() {
       displayErrors(error.message)
     })
   $('#findDrink').click(function() {
-    let ingredient = $('#ingredient').val();
+    let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
-      .then(function(drinkResponse) {
-        if (drinkResponse instanceof Error) {
-          throw Error(`CocktailDB API error: ${drinkResponse.message}`);
-        }
-        const drinkListByIngredient = drinkResponse.drinks;
-        displayDrinks(drinkListByIngredient);
-      })
-      .catch(function(error) {
-        displayErrors(error.message)
-      })
+    .then(function(drinkResponse) {
+      if (drinkResponse instanceof Error) {
+        throw Error(`CocktailDB API error: ${drinkResponse.message}`);
+      }
+      const drinkListByIngredient = drinkResponse.drinks;
+      displayDrinks(drinkListByIngredient);
+    })
+    .catch(function(error) {
+      displayErrors(error.message)
+    })
     let drink = "White Russian";
     (async function() {
       const response = await SearchName.getDrinksByName(drink);

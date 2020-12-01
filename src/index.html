@@ -13,18 +13,30 @@
       <blockquote class="blockquote">
         <p>"Never forget your bar towel."</p>
       </blockquote>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <button class="btn btn-primary dropdown-toggle search-btn search" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" id="name">Drink Name</a>
-            <a class="dropdown-item" id="ingredients">Ingredients</a>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <button class="btn btn-primary dropdown-toggle search-btn search" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" id="name">Drink Name</a>
+                  <a class="dropdown-item" id="ingredients">Ingredients</a>
+                </div>
+              </div>
+              <select type="text" class="form-control search" aria-label="Text input with dropdown button"></select>
+            </div>
+        </div>
+          <div class="col-3">
+            <input type="text" class="form-control search" placeholder="Search by Drink Name...">
+          </div>
+          <div class="col-3">
+          <button class="btn btn-primary search-btn search" type="button"><i class="fas fa-search"></i></button>
           </div>
         </div>
-        <select type="text" class="form-control search" aria-label="Text input with dropdown button"></select>
       </div>
-    </form>
-  </div>
+      </form>
+    </div>
   <div id="results"></div>
 </body>
 </html>
