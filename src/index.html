@@ -9,22 +9,19 @@
 <body>
   <div class="header">
     <form id="searchBar">
-      <h1>Bartender's Guide to the Galaxy</h1>
+      <h1 class="glow">Bartender's Guide to the Galaxy</h1>
       <blockquote class="blockquote">
         <p>"Never forget your bar towel."</p>
-        <footer class="blockquote-footer">Group Quote</footer>
       </blockquote>
-      <div class="form-box">
-        <div class="dropdown">
-        <input type="text" class="search drink" placeholder="What will you drink today?">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Search by...</button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita">Ingredient</a>
-          <a class="dropdown-item" href="https://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka">Drink Name</a>
-          <a class="dropdown-item" href="https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink">Category</a>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn btn-primary dropdown-toggle search-btn search" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" id="name">Drink Name</a>
+            <a class="dropdown-item" id="ingredients">Ingredients</a>
+          </div>
         </div>
-        <button class="search-btn" type="button"><i class="fas fa-search"></i></button>
-        </div>
+        <input type="text" class="form-control search" aria-label="Text input with dropdown button">
       </div>
     </form>
   </div>
