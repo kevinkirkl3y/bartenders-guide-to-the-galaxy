@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
 }
+
 .glow {
   font-size: 60px;
   color: #fff;
@@ -23,6 +23,7 @@
     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
   }
 }
+
 .header {
   height: 100vh;
   justify-content: center;
@@ -39,15 +40,17 @@
 h1 {
   font-size: 45px;
   margin-bottom: 30px;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
 }
 
 .blockquote {
   font-family: 'Marck Script', cursive;
   color: white;
-  font-size: 3c0px;
+  font-size: 25px;
   text-align: right;
+  letter-spacing: 3px;
 }
+
 
 .blockquote-footer {
   color: #A6877C;
