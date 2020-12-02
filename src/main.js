@@ -32,7 +32,7 @@ function showDrinkByName (searchNameResponse) {
     }
     console.log(drinkList);
   } else {
-  $('.showErrors').append(`<p>`)
+    $('.showErrors').append(`<p>`);
   }
 }
 function showDrinkInformation (searchNameResponse) {
