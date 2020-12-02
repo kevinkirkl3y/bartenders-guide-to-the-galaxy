@@ -61,7 +61,7 @@ $(document).ready(function() {
     .catch(function(error) {
       displayErrors(error.message);
     });
-  $('#findDrink').click(function() {
+  $('#searchButton').click(function() {
     event.preventDefault();
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
@@ -79,6 +79,8 @@ $(document).ready(function() {
     //search by user inputted drink name
     let drinkName = "White Russian";
     console.log(drinkName);
+    $("drinkListDisplay").val();
+    $("#searchButton").val();
     (async function() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
       showDrinkByName(searchNameResponse);
