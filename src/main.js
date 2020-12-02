@@ -31,7 +31,7 @@ function displayDrinks(response) { //does this accurately display drinks?!
     for (let i=0; i<10; i++) { 
       let j = Math.floor(Math.random() * response.length); //random number * length
       if(mySet.has(j)){ 
-        i--
+        i--;
       } else {
         mySet.add(j);
         $('.drink-results').append(response[j].strDrink);
@@ -58,7 +58,6 @@ function showDrinkByName (searchNameResponse) {
 
 
 $(document).ready(function() {
-  $('#resultsBody').hide();
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
       if(cocktailResponse instanceof Error) {
@@ -69,7 +68,7 @@ $(document).ready(function() {
     .catch(function(error) {
       displayErrors(error.message);
     });
-  $('#searchButton').click(function() {
+  $('#ingredientsSearchButton').click(function() {
     event.preventDefault();
     clearFields();
     //search by API called ingredient
@@ -85,11 +84,12 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message);
       });
-  })
-  $('#searchButton').click(function() {
+  });
+  $('#nameSearchButton').click(function() {
+    event.preventDefault();
+    clearFields();
     let drinkName = $('#findDrink').val();
     $("#drinkListDisplay").val();
-    //$("#searchButton").val(); -- Do we need this line here? No functionality.
     $("#resultsBody").show();
     (async function() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
@@ -97,7 +97,11 @@ $(document).ready(function() {
       let drinkInfo = showDrinkInformation(searchNameResponse);
       let drinkAndInfo = [];
       for(let i=0; i<drinkList.length; i++) {
-        drinkAndInfo.push(`<p>${drinkList[i]}: ${drinkInfo[i]}</p>`);
+        drinkAndInfo.push(`
+        <div class="card" id="drinkAndInfo>
+          <div class="card-title">${drinkList[i]}:</div>
+          <div class="card-body">${drinkInfo[i]}</div>
+        </div>`);
       }
       $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
     })();
