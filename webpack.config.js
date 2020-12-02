@@ -20,6 +20,10 @@ module.exports = {
       template: './src/index.html',
       inject: 'body'
     }),
+    new HtmlWebpackPlugin({
+    template: './src/video.html',
+    filename: 'video.html'
+  }),
     new Dotenv()
   ],
   module: {
