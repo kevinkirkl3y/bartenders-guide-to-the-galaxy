@@ -76,61 +76,65 @@ function showDrinkByName (searchNameResponse) {
 
 
 $(document).ready(function() {
-  IngredientService.getAllIngredients()
-    .then(function(cocktailResponse) {
-      if(cocktailResponse instanceof Error) {
-        throw Error(`Cocktail DB API error: ${cocktailResponse.message}`);
-      }
-      getIngredients(cocktailResponse); 
-    })
-    .catch(function(error) {
-      displayErrors(error.message);
-    });
-  $('#ingredientsSearchButton').click(function() {
-    event.preventDefault();
-    clearFields();
-    $('#resultsBody').show();
-    //search by API called ingredient
-    let ingredient = $('#ingredients').val();
-    console.log(ingredient);
-    DrinksByIngredient.findDrink(ingredient)
-      .then(function(drinkResponse) {
-        if (drinkResponse instanceof Error) {
-          throw Error(`CocktailDB API error: ${drinkResponse.message}`);
+  const towel =confirm("Do you have your bar towel ready? Click OK for yes or Cancel for no.");
+  if (towel) { 
+    IngredientService.getAllIngredients()
+      .then(function(cocktailResponse) {
+        if(cocktailResponse instanceof Error) {
+          throw Error(`Cocktail DB API error: ${cocktailResponse.message}`);
         }
-        const drinkListByIngredient = drinkResponse.drinks;
-        let drinkArray = displayDrinks(drinkListByIngredient);
-        let drinkCards = cardDisplay(drinkArray);
-        $('#results').html(drinkCards);
-
-        // $("#card-name").click(function() {
-        //   $().toggle();
-        // })
+        getIngredients(cocktailResponse); 
       })
       .catch(function(error) {
         displayErrors(error.message);
       });
-  });
-  $('#nameSearchButton').click(function() {
-    event.preventDefault();
-    clearFields();
-    let drinkName = $('#findDrink').val();
-    $("#drinkListDisplay").val();
-    $("#resultsBody").show();
-    (async function() {
-      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-      let drinkList = showDrinkByName(searchNameResponse);
-      let drinkInfo = showDrinkInformation(searchNameResponse);
-      let drinkAndInfo = [];
-      for(let i=0; i<drinkList.length; i++) {
-        drinkAndInfo.push(`
-        <div class="card" id="drinkAndInfo">
-          <div class="card-title">${drinkList[i]}:</div>
-          <div class="card-body">${drinkInfo[i]}</div>
-        </div>`);
-      }
-      $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
-    })();
-  });
+    $('#ingredientsSearchButton').click(function() {
+      event.preventDefault();
+      clearFields();
+      $('#resultsBody').show();
+      //search by API called ingredient
+      let ingredient = $('#ingredients').val();
+      console.log(ingredient);
+      DrinksByIngredient.findDrink(ingredient)
+        .then(function(drinkResponse) {
+          if (drinkResponse instanceof Error) {
+            throw Error(`CocktailDB API error: ${drinkResponse.message}`);
+          }
+          const drinkListByIngredient = drinkResponse.drinks;
+          let drinkArray = displayDrinks(drinkListByIngredient);
+          let drinkCards = cardDisplay(drinkArray);
+          $('#results').html(drinkCards);
+          // $("#card-name").click(function() {
+          //   $().toggle();
+          // })
+        })
+        .catch(function(error) {
+          displayErrors(error.message);
+        });
+    });
+    $('#nameSearchButton').click(function() {
+      event.preventDefault();
+      clearFields();
+      let drinkName = $('#findDrink').val();
+      $("#drinkListDisplay").val();
+      $("#resultsBody").show();
+      (async function() {
+        const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+        let drinkList = showDrinkByName(searchNameResponse);
+        let drinkInfo = showDrinkInformation(searchNameResponse);
+        let drinkAndInfo = [];
+        for(let i=0; i<drinkList.length; i++) {
+          drinkAndInfo.push(`
+          <div class="card" id="drinkAndInfo">
+            <div class="card-title">${drinkList[i]}:</div>
+            <div class="card-body">${drinkInfo[i]}</div>
+          </div>`);
+        }
+        $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
+      })();
+    });
+  } else { 
+    alert ("Please grab your bar towel and try again.")
+  }
 });
 
