@@ -5,6 +5,8 @@ import './css/styles.css';
 import SearchName from './js/name-service.js';
 import IngredientService from './js/ingredient-service.js';
 import DrinksByIngredient from './js/cocktail-by-ingredient-service';
+import showDrinkInformation from './js/drinkInfoService.js'
+
 
 function getIngredients(response) { //completed -jc
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
@@ -42,25 +44,13 @@ function showDrinkByName (searchNameResponse) {
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-    $('#drinkListDisplay').text(`${drinkList}`);
+
+    return $('#drinkListDisplay').text(`${drinkList}`);
   } else {
     $('.showErrors').append(`<p>`);
   }
 }
 
-function showDrinkInformation (searchNameResponse) {
-  if(searchNameResponse.drinks[0].strDrink) {
-    let drinkInfo = [];
-    for (let i =0; i<searchNameResponse.drinks.length; i++ ) { 
-      let instructions = searchNameResponse.drinks[i].strInstructions;
-      let measurements = searchNameResponse.drinks[i].strMeasure1;
-      let ingredients = searchNameResponse.drinks[i].strIngredient1;
-      drinkInfo.push(`${instructions} Use ${measurements} of ${ingredients}`);
-    }
-    console.log(drinkInfo);
-    
-  }
-}
 
 $(document).ready(function() {
   IngredientService.getAllIngredients()
@@ -86,15 +76,17 @@ $(document).ready(function() {
         displayDrinks(drinkListByIngredient);
       })
       .catch(function(error) {
-        displayErrors(error.message);
-      });
-    //search by user inputted drink name
+
+        displayErrors(error.message)
+      })
+  })
+
     let drinkName = $('#findDrink').val();
-    console.log(drinkName);
-    (async function() {
-      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-      showDrinkByName(searchNameResponse);
-      showDrinkInformation(searchNameResponse);
-    })();
-  });
+  (async function() {
+    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+    showDrinkByName(searchNameResponse);
+    console.log(showDrinkByName(searchNameResponse))
+    showDrinkInformation(searchNameResponse);
+    console.log(showDrinkInformation(searchNameResponse)); 
+  })();
 });
