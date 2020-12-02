@@ -65,8 +65,7 @@ function showDrinkByName (searchNameResponse) {
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-
-    return $('#drinkListDisplay').text(`${drinkList}`);
+    return drinkList; //We need this for the purposes of returning this array below the click function. 
   } else {
     $('.showErrors').append(`<p>`);
   }
@@ -105,21 +104,26 @@ $(document).ready(function() {
         displayErrors(error.message);
       });
   });
-  //search by user inputted drink name
-  // let drinkName = "White Russian";
   $('#nameSearchButton').click(function() {
     event.preventDefault();
     clearFields();
     let drinkName = $('#findDrink').val();
-    $("drinkListDisplay").val();
-    $("#searchButton").val();
+    $("#drinkListDisplay").val();
     $("#resultsBody").show();
     (async function() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-      showDrinkByName(searchNameResponse);
-      console.log(showDrinkByName(searchNameResponse));
-      showDrinkInformation(searchNameResponse);
-      console.log(showDrinkInformation(searchNameResponse)); 
+      let drinkList = showDrinkByName(searchNameResponse);
+      let drinkInfo = showDrinkInformation(searchNameResponse);
+      let drinkAndInfo = [];
+      for(let i=0; i<drinkList.length; i++) {
+        drinkAndInfo.push(`
+        <div class="card" id="drinkAndInfo">
+          <div class="card-title">${drinkList[i]}:</div>
+          <div class="card-body">${drinkInfo[i]}</div>
+        </div>`);
+      }
+      $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
     })();
   });
 });
+
