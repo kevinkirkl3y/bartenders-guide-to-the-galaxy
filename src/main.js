@@ -92,11 +92,12 @@ $(document).ready(function() {
     $("drinkListDisplay").val();
     $("#searchButton").val();
     $("#resultsBody").show();
-  (async function() {
-    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-    showDrinkByName(searchNameResponse);
-    console.log(showDrinkByName(searchNameResponse))
-    showDrinkInformation(searchNameResponse);
-    console.log(showDrinkInformation(searchNameResponse)); 
-  })();
+    (async function() {
+      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+      showDrinkByName(searchNameResponse);
+      console.log(showDrinkByName(searchNameResponse));
+      showDrinkInformation(searchNameResponse);
+      console.log(showDrinkInformation(searchNameResponse)); 
+    })();
+  });
 });
