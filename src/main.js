@@ -98,7 +98,7 @@ $(document).ready(function() {
       let drinkAndInfo = [];
       for(let i=0; i<drinkList.length; i++) {
         drinkAndInfo.push(`
-        <div class="card" id="drinkAndInfo>
+        <div class="card" id="drinkAndInfo">
           <div class="card-title">${drinkList[i]}:</div>
           <div class="card-body">${drinkInfo[i]}</div>
         </div>`);
