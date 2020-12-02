@@ -16,7 +16,7 @@ function clearFields() {
 
 function getIngredients(response) { //completed -jc
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
-    let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value}>${value}</option>`);
+    let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value.replace(" ", "+")}>${value}</option>`);
     $('select').append(values);
   }
 }
@@ -24,7 +24,7 @@ function getIngredients(response) { //completed -jc
 function cardDisplay(array) {
   const drinkCards = array.map((element) => 
     `<div class="card">
-      <div class="card-title"> ${element.strDrink} </div>
+      <div class="card-title" id="card-name"> ${element.strDrink} </div>
       <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
     </div>`); 
   console.log(drinkCards);
@@ -38,6 +38,9 @@ function displayDrinks(response) { //does this accurately display drinks?!
       // $('.drink-results').append(response[i].strDrink);
       drinkArray.push(response[i]);
     } 
+    console.log(response);
+    console.log(drinkArray);
+    return drinkArray;
   } else {  
     let mySet = new Set(); //empty object
     for (let i=0; i<10; i++) { 
@@ -99,6 +102,10 @@ $(document).ready(function() {
         let drinkArray = displayDrinks(drinkListByIngredient);
         let drinkCards = cardDisplay(drinkArray);
         $('#results').html(drinkCards);
+
+        // $("#card-name").click(function() {
+        //   $().toggle();
+        // })
       })
       .catch(function(error) {
         displayErrors(error.message);
