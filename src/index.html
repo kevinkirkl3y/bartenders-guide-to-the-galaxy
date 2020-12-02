@@ -13,28 +13,26 @@
         <div class="row">
           <div class="col-6">
             <div class="input-group">
-              <div class="input-group-prepend">
-                <button class="btn btn-primary dropdown-toggle search-btn search" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" id="name">Drink Name</a>
-                  <a class="dropdown-item" id="ingredients">Ingredients</a>
-                </div>
-              </div>
-              <select type="text" class="form-control search" aria-label="Text input with dropdown button"></select>
+              <select type="text" id="ingredients" class="form-control search" aria-label="Text input with dropdown button"></select>
+              <button class="search-btn search" id="ingredientsSearchButton" type="submit"><i class="fas fa-search"></i></button>
             </div>
           </div>
           <div class="col-4">
             <input type="text" id="findDrink" class="form-control search" placeholder="Search by Drink Name...">
           </div>
           <div class="col-1">
-          <button class="search-btn search" id="searchButton" type="submit"><i class="fas fa-search"></i></button>
+          <button class="search-btn search" id="nameSearchButton" type="submit"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
     </form>
+  </div>
     <div class="container" id="resultsBody">
       <div class="row">
         <div id="results"></div>
-        <div id="drinkListDi
+        <div id="drinkListDisplay"></div>
+        <div id="showErrors"></div>
+      </div>
+    </div>
 </body>
 </html>
