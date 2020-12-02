@@ -1,7 +1,7 @@
 {
   "name": "bartenders-guide",
   "version": "1.0.0",
-  "description": "",
+  "description": "#### \"Objective and Date TODO\"",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
@@ -33,5 +33,13 @@
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinkirkl3y/bartenders-guide-to-the-galaxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevinkirkl3y/bartenders-guide-to-the-galaxy/issues"
+  },
+  "homepage": "https://github.com/kevinkirkl3y/bartenders-guide-to-the-galaxy#readme"
 }

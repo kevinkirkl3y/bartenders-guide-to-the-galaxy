@@ -9,6 +9,6 @@ export default class IngredientService {
       })
       .catch(function(error) {
         return Error(error);
-      })
+      });
   }
 }
