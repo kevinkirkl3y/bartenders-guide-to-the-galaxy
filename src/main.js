@@ -50,8 +50,7 @@ function showDrinkByName (searchNameResponse) {
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-
-    return $('#drinkListDisplay').text(`${drinkList}`);
+    return drinkList; //We need this for the purposes of returning this array below the click function. 
   } else {
     $('.showErrors').append(`<p>`);
   }
@@ -86,17 +85,21 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message);
       });
-    //search by user inputted drink name
-    // let drinkName = "White Russian";
+  })
+  $('#searchButton').click(function() {
     let drinkName = $('#findDrink').val();
-    $("drinkListDisplay").val();
-    $("#searchButton").val();
+    $("#drinkListDisplay").val();
+    //$("#searchButton").val(); -- Do we need this line here? No functionality.
     $("#resultsBody").show();
-  (async function() {
-    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-    showDrinkByName(searchNameResponse);
-    console.log(showDrinkByName(searchNameResponse))
-    showDrinkInformation(searchNameResponse);
-    console.log(showDrinkInformation(searchNameResponse)); 
-  })();
+    (async function() {
+      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+      let drinkList = showDrinkByName(searchNameResponse);
+      let drinkInfo = showDrinkInformation(searchNameResponse);
+      let drinkAndInfo = [];
+      for(let i=0; i<drinkList.length; i++) {
+        drinkAndInfo.push(`<p>${drinkList[i]}: ${drinkInfo[i]}</p>`);
+      }
+      $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
+    })();
+  });
 });
