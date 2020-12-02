@@ -31,13 +31,18 @@
             <input type="text" id="findDrink" class="form-control search" placeholder="Search by Drink Name...">
           </div>
           <div class="col-1">
-          <button class="search-btn search" type="submit"><i class="fas fa-search"></i></button>
+          <button class="search-btn search" id="searchButton" type="submit"><i class="fas fa-search"></i></button>
           </div>
         </div>
       </div>
     </form>
-    <div id="results"></div>
-    <div id="drinkListDisplay"></div>
+    <div class="container" id="resultsBody">
+      <div class="row">
+        <div id="results"></div>
+        <div id="drinkListDisplay"></div>
+        <div id="showErrors"></div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
