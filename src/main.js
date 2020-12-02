@@ -37,16 +37,17 @@ function displayErrors(error) {
 }
 
 function showDrinkByName (searchNameResponse) {
-  if(searchNameResponse.drinks[0].strDrink) {
+  if (searchNameResponse.drinks[0].strDrink) {
     let drinkList = [];
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-    console.log(drinkList);
+    $('#drinkListDisplay').text(`${drinkList}`);
   } else {
     $('.showErrors').append(`<p>`);
   }
 }
+
 function showDrinkInformation (searchNameResponse) {
   if(searchNameResponse.drinks[0].strDrink) {
     let drinkInfo = [];
@@ -73,6 +74,8 @@ $(document).ready(function() {
       displayErrors(error.message);
     });
   $('#findDrink').click(function() {
+    event.preventDefault();
+    //search by API called ingredient
     let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
       .then(function(drinkResponse) {
@@ -85,11 +88,13 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message);
       });
+    //search by user inputted drink name
+    let drinkName = $('#findDrink').val();
+    console.log(drinkName);
+    (async function() {
+      const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+      showDrinkByName(searchNameResponse);
+      showDrinkInformation(searchNameResponse);
+    })();
   });
-  let drinkName = "White Russian";
-  (async function() {
-    const searchNameResponse = await SearchName.getDrinksByName(drinkName);
-    showDrinkByName(searchNameResponse);
-    showDrinkInformation(searchNameResponse);
-  })();
 });

@@ -1,12 +1,12 @@
-# Title TODO
+# Bartender's Guide to the Galaxy
 
-#### "Objective and Date TODO"
+#### "Team Week Project for Epicodus Coding School following the completion of Intro to Programming & Intermediate Javascript, 12.2020"
 
-#### by _****_
+#### By _**Jeff Chiu, Bess Campbell, Kevin Kirkley, Amanda Otero, Tawnee Harris, Svea Wade, and Danielle Thompson**_
 
 ## Description
 
- 
+This application works with the CocktailDB API to pull information for the home bartender to be able to make delicious drinks at home. Search options link to available data in the CocktailDB by drink name, by ingredient, and by category of drink style. 
 
 ## Specifications
 
@@ -19,8 +19,6 @@
 | getInstructionsByName |||
 | should correctly display ingredients, amounts and instructions for a specific drink |||
 | should correctly tell user if the searched for drink does not exist | "oldd fashioned" | "that drink does not exist" | 
-
-
 
 
 ## Setup/Installation Requirements
