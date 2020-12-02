@@ -7,7 +7,8 @@ import IngredientService from './js/ingredient-service.js';
 import DrinksByIngredient from './js/cocktail-by-ingredient-service';
 import showDrinkInformation from './js/drinkInfoService.js'
 
-function getIngredients(response) {
+
+function getIngredients(response) { //completed -jc
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
     let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value}>${value}</option>`);
     $('select').append(values);
@@ -15,10 +16,22 @@ function getIngredients(response) {
 }
 
 function displayDrinks(response) { //does this accurately display drinks?!
-  for (let i=0; i<10; i++) {
-    let j = Math.floor(Math.random() * response.drinks.length)
-    $('.drink-results').append(response.drinks[j].strDrink)
-  }
+  if (response.length< 10) { 
+    for (let i=0; i< response.length; i++) {
+      $('.drink-results').append(response[i].strDrink);
+    } 
+  } else {  
+    let mySet = new Set(); //empty object
+    for (let i=0; i<10; i++) { 
+      let j = Math.floor(Math.random() * response.length); //random number * length
+      if(mySet.has(j)){ 
+        i--
+      } else {
+        mySet.add(j);
+        $('.drink-results').append(response[j].strDrink);
+      }
+    }
+  }  
 }
 
 function displayErrors(error) {
@@ -26,14 +39,15 @@ function displayErrors(error) {
 }
 
 function showDrinkByName (searchNameResponse) {
-  if(searchNameResponse.drinks[0].strDrink) {
+  if (searchNameResponse.drinks[0].strDrink) {
     let drinkList = [];
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-    return drinkList;
-  } else if (searchNameResponse.drinks[0] === null) {
-  console.log(`Your query returned an error ${searchNameResponse.drinks[0]}`)
+
+    return $('#drinkListDisplay').text(`${drinkList}`);
+  } else {
+    $('.showErrors').append(`<p>`);
   }
 }
 
@@ -47,10 +61,12 @@ $(document).ready(function() {
       getIngredients(cocktailResponse); 
     })
     .catch(function(error) {
-      displayErrors(error.message)
-    })
+      displayErrors(error.message);
+    });
   $('#findDrink').click(function() {
-    let ingredient = $('#ingredient').val();
+    event.preventDefault();
+    //search by API called ingredient
+    let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
       .then(function(drinkResponse) {
         if (drinkResponse instanceof Error) {
@@ -60,11 +76,12 @@ $(document).ready(function() {
         displayDrinks(drinkListByIngredient);
       })
       .catch(function(error) {
+
         displayErrors(error.message)
       })
   })
 
-  let drinkName = "white russian"; // $('#name').val();
+    let drinkName = $('#findDrink').val();
   (async function() {
     const searchNameResponse = await SearchName.getDrinksByName(drinkName);
     showDrinkByName(searchNameResponse);
