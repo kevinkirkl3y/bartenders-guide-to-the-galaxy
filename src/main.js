@@ -21,23 +21,38 @@ function getIngredients(response) { //completed -jc
   }
 }
 
+function cardDisplay(array) {
+  const drinkCards = array.map((element) => 
+    `<div class="card">
+      <div class="card-title"> ${element.strDrink} </div>
+      <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
+    </div>`); 
+  console.log(drinkCards);
+  return drinkCards;
+}
+
 function displayDrinks(response) { //does this accurately display drinks?!
+  let drinkArray = [];
   if (response.length< 10) { 
     for (let i=0; i< response.length; i++) {
-      $('.drink-results').append(response[i].strDrink);
+      // $('.drink-results').append(response[i].strDrink);
+      drinkArray.push(response[i]);
     } 
   } else {  
     let mySet = new Set(); //empty object
     for (let i=0; i<10; i++) { 
       let j = Math.floor(Math.random() * response.length); //random number * length
       if(mySet.has(j)){ 
-        i--
+        i--;
       } else {
         mySet.add(j);
-        $('.drink-results').append(response[j].strDrink);
+        // $('.drink-results').append(response[j].strDrink);
+        drinkArray.push(response[j]);
       }
     }
-  }  
+    console.log(drinkArray);
+    return drinkArray;
+  } 
 }
 
 function displayErrors(error) {
@@ -59,7 +74,6 @@ function showDrinkByName (searchNameResponse) {
 
 
 $(document).ready(function() {
-  $('#resultsBody').hide();
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
       if(cocktailResponse instanceof Error) {
@@ -70,24 +84,32 @@ $(document).ready(function() {
     .catch(function(error) {
       displayErrors(error.message);
     });
-  $('#searchButton').click(function() {
+  $('#ingredientsSearchButton').click(function() {
     event.preventDefault();
     clearFields();
+    $('#resultsBody').show();
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
+    console.log(ingredient);
     DrinksByIngredient.findDrink(ingredient)
       .then(function(drinkResponse) {
         if (drinkResponse instanceof Error) {
           throw Error(`CocktailDB API error: ${drinkResponse.message}`);
         }
         const drinkListByIngredient = drinkResponse.drinks;
-        displayDrinks(drinkListByIngredient);
+        let drinkArray = displayDrinks(drinkListByIngredient);
+        let drinkCards = cardDisplay(drinkArray);
+        $('#results').html(drinkCards);
       })
       .catch(function(error) {
         displayErrors(error.message);
       });
-    //search by user inputted drink name
-    // let drinkName = "White Russian";
+  });
+  //search by user inputted drink name
+  // let drinkName = "White Russian";
+  $('#nameSearchButton').click(function() {
+    event.preventDefault();
+    clearFields();
     let drinkName = $('#findDrink').val();
     $("drinkListDisplay").val();
     $("#searchButton").val();

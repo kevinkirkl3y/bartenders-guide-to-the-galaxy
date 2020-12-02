@@ -9,6 +9,6 @@ export default class DrinksByIngredient {
       })
       .catch(function(error) {
         return Error(error);
-      })
+      });
   }
 }
