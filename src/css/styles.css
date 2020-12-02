@@ -6,6 +6,10 @@
   padding: 0;
 }
 
+.card-img-top {
+  width: 100px;
+}
+
 .glow {
   font-size: 60px;
   color: #fff;
@@ -36,6 +40,10 @@
   background-image: url("../assets/images/galaxies.jpg");
   background-size: cover;
   background-position: center;
+}
+
+body {
+  background-color: #2D3773;
 }
 
 h1 {
@@ -92,6 +100,11 @@ h1 {
   color: white;
   display: none;
 }
+
+.card {
+  background-color: #ed98c200;
+}
+
 #drinkAndInfo {
   background-color: #2d377385;
 }
