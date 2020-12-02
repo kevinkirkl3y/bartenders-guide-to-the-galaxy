@@ -72,3 +72,8 @@ h1 {
   background: #2A9D8F;
   cursor: pointer;
 }
+
+#resultsBody {
+  color: white;
+  display: none;
+}
