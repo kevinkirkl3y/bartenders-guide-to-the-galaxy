@@ -6,6 +6,13 @@ import SearchName from './js/name-service.js';
 import IngredientService from './js/ingredient-service.js';
 import DrinksByIngredient from './js/cocktail-by-ingredient-service';
 
+function clearFields() {
+  $("#form-control search").val("");
+  $("#results").text("");
+  $("#drinkListDisplay").text("");
+  $("#showErrors").text("");
+}
+
 function getIngredients(response) {
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
     let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value}>${value}</option>`);
@@ -16,12 +23,12 @@ function getIngredients(response) {
 function displayDrinks(response) { //does this accurately display drinks?!
   for (let i=0; i<10; i++) {
     let j = Math.floor(Math.random() * response.drinks.length);
-    $('.drink-results').append(response.drinks[j].strDrink);
+    $('#drinkListDisplay').append(response.drinks[j].strDrink);
   }
 }
 
 function displayErrors(error) {
-  $('.show-errors').text(`${error}`);
+  $('#showErrors').text(`${error}`);
 }
 
 function showDrinkByName (searchNameResponse) {
@@ -51,6 +58,7 @@ function showDrinkInformation (searchNameResponse) {
 }
 
 $(document).ready(function() {
+  $('#resultsBody').hide();
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
       if(cocktailResponse instanceof Error) {
@@ -63,6 +71,7 @@ $(document).ready(function() {
     });
   $('#searchButton').click(function() {
     event.preventDefault();
+    clearFields();
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
@@ -78,9 +87,9 @@ $(document).ready(function() {
       });
     //search by user inputted drink name
     let drinkName = "White Russian";
-    console.log(drinkName);
     $("drinkListDisplay").val();
     $("#searchButton").val();
+    $("#resultsBody").show();
     (async function() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
       showDrinkByName(searchNameResponse);
