@@ -5,8 +5,14 @@ import './css/styles.css';
 import SearchName from './js/name-service.js';
 import IngredientService from './js/ingredient-service.js';
 import DrinksByIngredient from './js/cocktail-by-ingredient-service';
-import showDrinkInformation from './js/drinkInfoService.js'
+import showDrinkInformation from './js/drinkInfoService.js';
 
+function clearFields() {
+  $("#form-control search").val("");
+  $("#results").text("");
+  $("#drinkListDisplay").text("");
+  $("#showErrors").text("");
+}
 
 function getIngredients(response) { //completed -jc
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
@@ -35,7 +41,7 @@ function displayDrinks(response) { //does this accurately display drinks?!
 }
 
 function displayErrors(error) {
-  $('.show-errors').text(`${error}`);
+  $('#showErrors').text(`${error}`);
 }
 
 function showDrinkByName (searchNameResponse) {
@@ -53,6 +59,7 @@ function showDrinkByName (searchNameResponse) {
 
 
 $(document).ready(function() {
+  $('#resultsBody').hide();
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
       if(cocktailResponse instanceof Error) {
@@ -63,8 +70,9 @@ $(document).ready(function() {
     .catch(function(error) {
       displayErrors(error.message);
     });
-  $('#findDrink').click(function() {
+  $('#searchButton').click(function() {
     event.preventDefault();
+    clearFields();
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
@@ -76,12 +84,14 @@ $(document).ready(function() {
         displayDrinks(drinkListByIngredient);
       })
       .catch(function(error) {
-
-        displayErrors(error.message)
-      })
-  })
-
+        displayErrors(error.message);
+      });
+    //search by user inputted drink name
+    // let drinkName = "White Russian";
     let drinkName = $('#findDrink').val();
+    $("drinkListDisplay").val();
+    $("#searchButton").val();
+    $("#resultsBody").show();
   (async function() {
     const searchNameResponse = await SearchName.getDrinksByName(drinkName);
     showDrinkByName(searchNameResponse);
