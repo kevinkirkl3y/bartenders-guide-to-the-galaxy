@@ -16,11 +16,15 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'TODO',
+      title: 'Bartenders Guide to the Galaxy',
       template: './src/index.html',
       inject: 'body'
     }),
-    new Dotenv()
+    new Dotenv(),
+    new HtmlWebpackPlugin({
+      template: './src/questionnaire.html',
+      filename: 'questionnaire.html'
+    })
   ],
   module: {
     rules: [
