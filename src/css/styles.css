@@ -132,15 +132,11 @@ i {
   }
 }
 
-#resultsBody {
+#results, #drinkListDisplay, #showErrors {
   color: white;
   display: none;
 }
-  grid-template-columns: repeat(auto-fill, 2fr);
-  grid-auto-rows: auto;
-  grid-gap: 1rem;
-  } */
-
+  
 .card {
   letter-spacing: 2px;
   font-family: 'Orbitron', sans-serif;

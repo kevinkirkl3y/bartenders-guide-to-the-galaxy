@@ -1,5 +1,5 @@
 export default function showDrinkInformation (searchNameResponse) {
-  if(searchNameResponse.drinks[0].strDrink) {
+  if(searchNameResponse.drinks) {
     let drinkInfo = [];
     for (let i =0; i<searchNameResponse.drinks.length; i++ ) { 
 
