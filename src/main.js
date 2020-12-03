@@ -16,30 +16,28 @@ function clearFields() {
 
 function getIngredients(response) { //completed -jc
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
-    let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value.replace(" ", "+")}>${value}</option>`);
+    let values = Object.values(response.drinks[i]).map((value) => `<option value=${value.replace(" ", "+")}>${value}</option>`);
     $('select').append(values);
   }
 }
 
 function cardDisplay(array) {
   const drinkCards = array.map((element) => 
-    `<div class="card col-3">
-      <div class="card-title" id="card-name"> ${element.strDrink} </div>
-      <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
+  `<div class="card col-3">
+    <div class="card-title" id="ingToRecipe"> ${element.strDrink} </div>
+    <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
+    <button class="btn btn-sm" value="${element.strDrink}"  type="submit" id="${element.idDrink}">Get Recipe</button>
+    <div class="${element.idDrink}"></div>
     </div>`); 
-  console.log(drinkCards);
-  return drinkCards;
+    return drinkCards;
 }
-
-function displayDrinks(response) { //does this accurately display drinks?!
+ 
+function displayDrinks(response) {
   let drinkArray = [];
   if (response.length< 12) { 
     for (let i=0; i< response.length; i++) {
-      // $('.drink-results').append(response[i].strDrink);
       drinkArray.push(response[i]);
     } 
-    console.log(response);
-    console.log(drinkArray);
     return drinkArray;
   } else {  
     let mySet = new Set(); //empty object
@@ -49,11 +47,9 @@ function displayDrinks(response) { //does this accurately display drinks?!
         i--;
       } else {
         mySet.add(j);
-        // $('.drink-results').append(response[j].strDrink);
         drinkArray.push(response[j]);
       }
     }
-    console.log(drinkArray);
     return drinkArray;
   } 
 }
@@ -63,16 +59,49 @@ function displayErrors(error) {
 }
 
 function showDrinkByName (searchNameResponse) {
-  if (searchNameResponse.drinks[0].strDrink) {
+  if (searchNameResponse.drinks) {
     let drinkList = [];
     for (let d = 0; d<searchNameResponse.drinks.length; d++) {
       drinkList.push(searchNameResponse.drinks[d].strDrink);
     }
-    return drinkList; //We need this for the purposes of returning this array below the click function. 
+    return drinkList; 
   } else {
     $('.showErrors').append(`<p>`);
   }
 }
+
+function backToCocktails() {
+  $('#revert').click(function() {
+    $("#drinkListDisplay").hide(); 
+    $("#results").show();
+    $('html,body').animate({
+      scrollTop: $("#resultsBody").offset().top},
+      'slow');
+  });
+}
+function recipeButtons (drinkArray) {
+  for(let i=0; i<drinkArray.length; i++) {
+    $(`#${drinkArray[i].idDrink}`).click(function() {
+      (async function searchNameResponse() {
+        const searchNameResponse = await SearchName.getDrinksByName(drinkArray[i].strDrink);
+        let drinkList = showDrinkByName(searchNameResponse);
+        let drinkInfo = showDrinkInformation(searchNameResponse);
+        let drinkAndInfo = 
+          `<div class="card" id="drinkAndInfo">
+          <div class="card-title">${drinkList}<div>
+          <div class="card-body">${drinkInfo}</div>
+          <button class="btn btn-sm"  type="submit" id="revert">Back To Cocktails</button>
+          </div>`;
+ 
+        $("#drinkListDisplay").html(`${drinkAndInfo}`);
+        $("#drinkListDisplay").show(); 
+        $("#results").hide();
+        backToCocktails();
+      })();
+    });
+  }
+}
+
 $(document).ready(function() {
   if (window.location.href.match('index.html') != null) {
   let towel = window.prompt('Do you have your bar towel handy?');
@@ -98,13 +127,12 @@ $(document).ready(function() {
   $('#ingredientsSearchButton').click(function() {
     event.preventDefault();
     clearFields();
-    $('#resultsBody').show();
+    $('#results').show();
     $('html,body').animate({
       scrollTop: $("#resultsBody").offset().top},
       'slow');
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
-    console.log(ingredient);
     DrinksByIngredient.findDrink(ingredient)
       .then(function(drinkResponse) {
         if (drinkResponse instanceof Error) {
@@ -114,25 +142,22 @@ $(document).ready(function() {
         let drinkArray = displayDrinks(drinkListByIngredient);
         let drinkCards = cardDisplay(drinkArray);
         $('#results').html(drinkCards);
-
-        // $("#card-name").click(function() {
-        //   $().toggle();
-        // })
+        recipeButtons(drinkArray);
       })
       .catch(function(error) {
         displayErrors(error.message);
-      });
-  });
+      }); 
+    });
   $('#nameSearchButton').click(function() {
     event.preventDefault();
     clearFields();
     let drinkName = $('#findDrink').val();
     $("#drinkListDisplay").val();
-    $("#resultsBody").show();
+    $("#drinkListDisplay").show();
     $('html,body').animate({
       scrollTop: $("#resultsBody").offset().top},
       'slow');
-    (async function() {
+    (async function searchNameResponse() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
       let drinkList = showDrinkByName(searchNameResponse);
       let drinkInfo = showDrinkInformation(searchNameResponse);

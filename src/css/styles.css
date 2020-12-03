@@ -49,7 +49,7 @@
 
 * {
   margin: 0;
-  padding-bottom: 35px;
+  padding-bottom: 25px;
 }
 
 .card-img-top {
@@ -149,7 +149,7 @@ i {
   }
 }
 
-#resultsBody {
+#results, #drinkListDisplay, #showErrors {
   color: white;
   display: none;
 }
@@ -163,6 +163,39 @@ i {
   padding: .5rem;
   background-color: #2d377362;
   height: 350px;
+}
+
+.questionCard {
+  font-family: 'Orbitron', sans-serif;
+  align-items: center;
+  border: 2px solid #2d377385;
+  background-color: #2d37737e;
+  margin: 100px;
+}
+
+#questionnaireStyling {
+  color: white;
+  align-items: center;
+}
+
+.questionLabel {
+  font-size: 18pt;
+  letter-spacing: 4pt;
+}
+
+#questionnaireSubmission {
+  border-radius: 35%;
+  background-color:#8887A6;
+  border: none;
+  color: white;
+}
+  
+.btn {
+  color: white;
+  letter-spacing: 2px;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
 #drinkAndInfo {
@@ -187,6 +220,10 @@ i {
 .column {
   flex: 50%;
   padding: 30px;
+}
+
+#sliderSize {
+  font-size: 16pt;
 }
 
 ul {
