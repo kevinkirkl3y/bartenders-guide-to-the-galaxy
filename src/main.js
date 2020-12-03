@@ -26,20 +26,21 @@ function cardDisplay(array) {
     `<div class="card">
       <div class="card-title" id="card-name"> ${element.strDrink} </div>
       <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
+      <button class="btn btn-sm" id="${element.idDrink}" type="submit" value="${element.strDrink}">Get Recipe</button>
+      <div id="recipe"></div>
     </div>`); 
-  console.log(drinkCards);
+    console.log(drinkCards)
   return drinkCards;
+  
 }
+ 
 
 function displayDrinks(response) { //does this accurately display drinks?!
   let drinkArray = [];
   if (response.length< 10) { 
     for (let i=0; i< response.length; i++) {
-      // $('.drink-results').append(response[i].strDrink);
       drinkArray.push(response[i]);
     } 
-    console.log(response);
-    console.log(drinkArray);
     return drinkArray;
   } else {  
     let mySet = new Set(); //empty object
@@ -49,11 +50,9 @@ function displayDrinks(response) { //does this accurately display drinks?!
         i--;
       } else {
         mySet.add(j);
-        // $('.drink-results').append(response[j].strDrink);
         drinkArray.push(response[j]);
       }
     }
-    console.log(drinkArray);
     return drinkArray;
   } 
 }
@@ -92,7 +91,6 @@ $(document).ready(function() {
     $('#resultsBody').show();
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
-    console.log(ingredient);
     DrinksByIngredient.findDrink(ingredient)
       .then(function(drinkResponse) {
         if (drinkResponse instanceof Error) {
@@ -103,9 +101,26 @@ $(document).ready(function() {
         let drinkCards = cardDisplay(drinkArray);
         $('#results').html(drinkCards);
 
-        // $("#card-name").click(function() {
-        //   $().toggle();
-        // })
+        
+        for (let i=0; i<drinkArray.length; i++) {
+          $(`'#${drinkArray[i].idDrink}'`).click(function() {
+            let drinkName = $('#ingToRecipe').val();
+            console.log(drinkName);
+            (async function searchNameResponse(drinkName) {
+              const searchNameResponse = await SearchName.getDrinksByName(drinkName);
+              let drinkList = showDrinkByName(searchNameResponse);
+              let drinkInfo = showDrinkInformation(searchNameResponse);
+              let drinkAndInfo = [
+                `<div class="card" id="drinkAndInfo">
+                <div class="card-title">${drinkList}:</div>
+                <div class="card-body">${drinkInfo}</div>
+                </div>`];
+                
+              $('#recipe').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
+            })();
+
+          });
+        }
       })
       .catch(function(error) {
         displayErrors(error.message);
@@ -117,7 +132,7 @@ $(document).ready(function() {
     let drinkName = $('#findDrink').val();
     $("#drinkListDisplay").val();
     $("#resultsBody").show();
-    (async function() {
+    (async function searchNameResponse() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
       let drinkList = showDrinkByName(searchNameResponse);
       let drinkInfo = showDrinkInformation(searchNameResponse);
@@ -132,5 +147,6 @@ $(document).ready(function() {
       $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
     })();
   });
+  
 });
 
