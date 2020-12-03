@@ -1,52 +1,57 @@
 # Bartender's Guide to the Galaxy
 
-#### "Team Week Project for Epicodus Coding School following the completion of Intro to Programming & Intermediate Javascript, 12.2020"
+#### "Team Week Project for Epicodus Coding School following the completion of Intro to Programming & Intermediate JavaScript, 12.03.2020"
 
-#### By _**Jeff Chiu, Bess Campbell, Kevin Kirkley, Amanda Otero, Tawnee Harris, Svea Wade, and Danielle Thompson**_
+#### By _**Jeff Chiu, Bess Campbell, Kevin Kirkley, Mandy Otero, Tawnee Harris, Svea Wade, and Danielle Thompson**_
 
 ## Description
 
-This application works with the CocktailDB API to pull information for the home bartender to be able to make delicious drinks at home. Search options link to available data in the CocktailDB by drink name, by ingredient, and by category of drink style. 
+This application works with the CocktailDB API to pull information for the home bartender to be able to make delicious drinks at home. Search options link to available data in the CocktailDB by drink name or by ingredient. 
 
 ## Specifications
 
 | Describe: | Input | Output |
 | :-----------------------------------| :------------- | :------------- |
 | getDrinksByIngredient |||
-| should correctly display a list of drinks with selected ingredient | ingredient = rum | drink = pina colada etc. |
+| should correctly display a list of up to twelve random drinks with selected ingredient | "Dark Rum" | drink = Adam, Bleeding Surgeon, Blue Hurricane, Dark and Stormy, Gideon's Green Dinosaur, Midnight Cowboy, Blueberry Mojito, 155 Belmont, Planter's Punch, Bahama Mama, Almeria, Lord and Lady |
 | getDrinksByName |||
-| should correctly display a list of drinks by name | "old fashioned" | drink = Old fashioned |
-| getInstructionsByName |||
-| should correctly display ingredients, amounts and instructions for a specific drink |||
-| should correctly tell user if the searched for drink does not exist | "oldd fashioned" | "that drink does not exist" | 
+| should correctly display a list of drinks by name with instructions  | "White Russian" | drink = White Russian. Pour vodka and coffee liqueur over ice cubes in an old-fashioned glass. Fill with light cream and serve. Use 2 oz Vodka, 1 oz Coffee liqueur
+
 
 
 ## Setup/Installation Requirements
 
 Software Requirements
-1. Internet Browser
-2. A code editor such as VSCode in order to view or edit codebase. 
+* An internet browser of your choice
+* A code editor such as VS Code
 
-Open by downloading:
-1. Download the [repository](TODO) onto your computer by clicking the 'clone or download button'.
-2. Double click the index.html to open it within your browser.
+Open by Downloading or Cloning
+* Navigate to <https://github.com/kevinkirkl3y/bartenders-guide-to-the-galaxy.git>
+* Download this repository to your computer by clicking the green Code button and 'Download Zip'
+* Or clone the repository
 
-Open with Bash/GitBash:
-1. Clone this repository onto your computer: 'git clone TODO'
-2. Navigate into the '' directory and open in VSCode or preferred text editor using 'code .' in your terminal.
-3. Open index.html in Google Chrome or your preferred browser. 
-
-View my live website here: 
-[TODO]()
+Setup Instructions
+* Node Package Manager and locally installed files are required to properly view this application. 
+* After the repository is on your computer, navigate to the terminal and type in `npm install`
+* Next, `npm run build`
+* And finally, `npm run start`
+* View the page in the live server that opens
 
 ## Known Bugs
 
-
+This application will not display anything if the drink searched for does not exist in the CocktailDB. 
 
 
 ## Support and contact detail
 
-_Contact  at [](mailto:) with and questions, concerns or additions._
+Team Member Email:
+
+* <jeffchiudev@gmail.com>
+* <bess.k.campbell@gmail.com>
+* <mandystar018@gmail.com>
+* <svealinneawade@gmail.com>
+* <71739178+dani-t-codes@users.noreply.github.com>
+* <tawneeh@icloud.com>
 
 ## Technologies Used 
 
@@ -59,7 +64,8 @@ _Contact  at [](mailto:) with and questions, concerns or additions._
 * _JavaScript_
 * _VSCode_
 
-### License
+<br></br>
 
-Copyright (c) 2020 **__**
-This software is licensed under the MIT license.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Copyright (c) 2020 **_Jeff Chiu, Bess Campbell, Kevin Kirkley, Mandy Otero, Tawnee Harris, Svea Wade, and Danielle Thompson_**

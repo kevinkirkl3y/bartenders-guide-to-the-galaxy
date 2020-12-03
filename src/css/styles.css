@@ -19,6 +19,22 @@
   text-align: justify;
   text-justify: inter-word;
   font-weight: 900;
+  box-sizing: border-box;
+  
+}
+
+.info-text {
+  background-color: #2d377362;
+  border-radius: 25px;
+  margin: 10px;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.info-text > p {
+  padding: 0px;
+  margin: 10px 10px 10px 10px;
+  box-sizing: border-box;
 }
 
 .back {
@@ -131,13 +147,11 @@ i {
   to {
     text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
   }
-}
 
-#resultsBody {
+#results, #drinkListDisplay, #showErrors {
   color: white;
   display: none;
 }
-
 .card {
   letter-spacing: 2px;
   font-family: 'Orbitron', sans-serif;
@@ -146,7 +160,7 @@ i {
   border: 2px solid #2d377385;
   border-radius: 4px;
   padding: .5rem;
-  background-color: #2d37737e;
+  background-color: #2d377362;
   height: 350px;
 }
 
@@ -173,6 +187,14 @@ i {
   background-color:#8887A6;
   border: none;
   color: white;
+}
+  
+.btn {
+  color: white;
+  letter-spacing: 2px;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
 #drinkAndInfo {
