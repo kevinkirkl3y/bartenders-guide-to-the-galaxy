@@ -20,11 +20,19 @@ module.exports = {
       template: './src/index.html',
       inject: 'body'
     }),
-    new Dotenv(),
     new HtmlWebpackPlugin({
       template: './src/questionnaire.html',
       filename: 'questionnaire.html'
-    })
+    }),
+    new HtmlWebpackPlugin({
+    template: './src/video.html',
+    filename: 'video.html'
+  }),
+    new HtmlWebpackPlugin({
+      template: './src/about.html',
+      filename: 'about.html'
+    }),
+    new Dotenv()
   ],
   module: {
     rules: [
