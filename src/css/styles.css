@@ -225,3 +225,31 @@ i {
 #sliderSize {
   font-size: 16pt;
 }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+li a:hover {
+  background-color: rgba(0, 0, 255, 0.473);
+}
