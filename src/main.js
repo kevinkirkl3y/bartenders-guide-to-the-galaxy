@@ -16,7 +16,7 @@ function clearFields() {
 
 function getIngredients(response) { //completed -jc
   for (let i=1; i <= response.drinks.length - 1; i += 1) {
-    let values = Object.values(response.drinks[i]).map((value)=> `<option value=${value.replace(" ", "+")}>${value}</option>`);
+    let values = Object.values(response.drinks[i]).map((value) => `<option value=${value.replace(" ", "+")}>${value}</option>`);
     $('select').append(values);
   }
 }
@@ -74,6 +74,9 @@ function backToCocktails() {
   $('#revert').click(function() {
     $("#drinkListDisplay").hide(); 
     $("#results").show();
+    $('html,body').animate({
+      scrollTop: $("#resultsBody").offset().top},
+      'slow');
   });
 }
 function recipeButtons (drinkArray) {

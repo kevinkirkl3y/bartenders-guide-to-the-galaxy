@@ -164,6 +164,14 @@ i {
   height: 350px;
 }
 
+.btn {
+  color: white;
+  letter-spacing: 2px;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
 #drinkAndInfo {
   background-color: #2d377385;
 }
