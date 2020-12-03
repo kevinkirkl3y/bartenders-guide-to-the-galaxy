@@ -26,7 +26,7 @@ function cardDisplay(array) {
     `<div class="card">
       <div class="card-title" id="card-name"> ${element.strDrink} </div>
       <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
-      <button class="btn btn-sm" id="${element.idDrink}" type="submit" value="${element.strDrink}">Get Recipe</button>
+      <button class="btn btn-sm" id="${element.strDrink.replace(" ","")}"  type="submit" value="${element.strDrink}">Get Recipe</button>
       <div id="recipe"></div>
     </div>`); 
     console.log(drinkCards)
@@ -103,7 +103,7 @@ $(document).ready(function() {
 
         
         for (let i=0; i<drinkArray.length; i++) {
-          $(`'#${drinkArray[i].idDrink}'`).click(function() {
+          $(`"#${drinkArray[i].strDrink.replace(" ", "")}"`).click(function() {
             let drinkName = $('#ingToRecipe').val();
             console.log(drinkName);
             (async function searchNameResponse(drinkName) {
