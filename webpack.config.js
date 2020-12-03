@@ -21,6 +21,11 @@ module.exports = {
       inject: 'body'
     }),
     new HtmlWebpackPlugin({
+
+    template: './src/video.html',
+    filename: 'video.html'
+  }),
+    new HtmlWebpackPlugin({
       template: './src/about.html',
       filename: 'about.html'
     }),
