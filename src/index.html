@@ -6,7 +6,11 @@
   <title>Bartender's Guide to the Galaxy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
-<body>
+
+<body>  
+  <h6><a href="questionnaire.html">Bartender's Choice</a></h6>  
+  <h6><a href="video.html">Click for Videos!</a></h6>
+  <h6><a href="about.html">About Page!</a></h6>
   <div class="header">
     <form id="searchBar">
       <h1 class="glow">Bartender's Guide to the Galaxy</h1>
@@ -17,7 +21,7 @@
         <div class="row">
           <div class="col-6">
             <div class="input-group">
-              <select type="text" id="ingredients" class="form-control search" aria-label="Text input with dropdown button"></select>
+              <select type="text" id="ingredients" class="form-control search"></select>
               <button class="search-btn search" id="ingredientsSearchButton" type="submit"><i class="fas fa-search"></i></button>
             </div>
           </div>
@@ -32,8 +36,8 @@
     </form>
   </div>
     <div class="container" id="resultsBody">
-      <div class="row">
-        <div id="results"></div>
+      <div>
+        <div id="results"></div> 
         <div id="drinkListDisplay"></div>
         <div id="showErrors"></div>
       </div>
