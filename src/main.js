@@ -26,15 +26,20 @@ function cardDisplay(array) {
     `<div class="card col-3">
       <div class="card-title" id="card-name"> ${element.strDrink} </div>
       <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
-      <button class="btn btn-sm" id="${element.strDrink.replace(" ","")}"  type="submit" value="${element.strDrink}">Get Recipe</button>
+      <button class="btn btn-sm" id="${element.strDrink.replace(" ","")}"  type="submit" value="${element.idDrink}">Get Recipe</button>
       <div id="recipe"></div>
-    </div>`); 
-    console.log(drinkCards)
-  return drinkCards;
-  
-}
- 
+      </div>`); 
+      console.log(drinkCards);
+      return drinkCards;
+      // <button class="btn btn-sm" id="${element.strDrink.replace(" ","")}"  type="submit" value="${element.idDrink}">Get Recipe</button>
+  }
 
+function attachButtonListenters() {
+  $('.card').on("click", "button", function(){
+    searchNameResponse();
+  });
+};
+ 
 function displayDrinks(response) { //does this accurately display drinks?!
   let drinkArray = [];
   if (response.length< 12) { 
@@ -102,16 +107,17 @@ $(document).ready(function() {
         let drinkArray = displayDrinks(drinkListByIngredient);
         let drinkCards = cardDisplay(drinkArray);
         $('#results').html(drinkCards);
+        attachButtonListenters();
 
         
-        for (let i=0; i<drinkArray.length; i++) {
+        // for (let i=0; i<drinkArray.length; i++) {
           $(`"#${drinkArray[i].strDrink.replace(" ", "")}"`).click(function() {
             let drinkName = $('#ingToRecipe').val();
             console.log(drinkName);
             (async function searchNameResponse(drinkName) {
               const searchNameResponse = await SearchName.getDrinksByName(drinkName);
               let drinkList = showDrinkByName(searchNameResponse);
-              let drinkInfo = showDrinkInformation(searchNameResponse);
+              let drinkInfo = showDrinkInformation(searchNameResponse);//christmas tree
               let drinkAndInfo = [
                 `<div class="card" id="drinkAndInfo">
                 <div class="card-title">${drinkList}:</div>
@@ -122,7 +128,7 @@ $(document).ready(function() {
             })();
 
           });
-        }
+        // }
       })
       .catch(function(error) {
         displayErrors(error.message);
