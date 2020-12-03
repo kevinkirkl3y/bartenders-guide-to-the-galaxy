@@ -1,6 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
+.background {
+  background: url("../assets/images/galaxies.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.info {
+  margin: 0px 100px;
+  margin-top: 120px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  text-align: justify;
+  text-justify: inter-word;
+  font-weight: 900;
+}
+
+.back {
+  margin-top: 100px;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  text-align: center;
+  text-justify: inter-word;
+}
+
 * {
   margin: 0;
   padding-bottom: 35px;
@@ -35,15 +65,9 @@
   display: flex;
   font-family: sans-serif;
   align-items: center;
-  /* background-color: #2D3773;
-  background-position: center;
-  background-image: url("../assets/images/galaxies.jpg");
-  background-size: cover;
-  background-position: center; */
 }  
 
 body {
-  background-color: #2D3773;
   background-color: #2D3773;
   background-position: center;
   background-image: url("../assets/images/galaxies.jpg");
@@ -112,9 +136,6 @@ i {
   color: white;
   display: none;
 }
-
-/* .cards {
-  display: grid;
   grid-template-columns: repeat(auto-fill, 2fr);
   grid-auto-rows: auto;
   grid-gap: 1rem;

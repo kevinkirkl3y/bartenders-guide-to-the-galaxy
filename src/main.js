@@ -74,7 +74,6 @@ function showDrinkByName (searchNameResponse) {
   }
 }
 
-
 $(document).ready(function() {
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
