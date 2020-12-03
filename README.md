@@ -48,6 +48,7 @@ Team Member Email:
 
 * <jeffchiudev@gmail.com>
 * <bess.k.campbell@gmail.com>
+* <kevinmkirkley@gmail.com>
 * <mandystar018@gmail.com>
 * <svealinneawade@gmail.com>
 * <71739178+dani-t-codes@users.noreply.github.com>
