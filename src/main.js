@@ -73,8 +73,18 @@ function showDrinkByName (searchNameResponse) {
     $('.showErrors').append(`<p>`);
   }
 }
-
 $(document).ready(function() {
+  if (window.location.href.match('index.html') != null) {
+  let towel = window.prompt('Do you have your bar towel handy?');
+  switch (towel) {
+    case "yes":
+    break;
+    default:
+    alert("Please grab your bar towel and try again")
+    window.open('https://youtu.be/DgDrHvJ51nw?t=20');
+    break;
+    } 
+  }
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
       if(cocktailResponse instanceof Error) {
