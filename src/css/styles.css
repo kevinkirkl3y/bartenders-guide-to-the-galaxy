@@ -132,7 +132,7 @@ i {
   }
 }
 
-#resultsBody {
+#results, #drinkListDisplay, #showErrors {
   color: white;
   display: none;
 }
