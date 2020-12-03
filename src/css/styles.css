@@ -43,6 +43,9 @@
 }
 
 body {
+  background-image: url("../assets/images/galaxies.jpg");
+  background-size: cover;
+  background-position: center;
   background-color: #2D3773;
 }
 
@@ -107,4 +110,15 @@ h1 {
 
 #drinkAndInfo {
   background-color: #2d377385;
+}
+
+#videoStyle {
+  color: white;
+  text-align: center;
+}
+
+#videoLinks {
+  font-style: italic;
+  text-align: center;
+  margin-top: 30px;
 }
