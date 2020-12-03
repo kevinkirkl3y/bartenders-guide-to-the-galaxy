@@ -68,7 +68,7 @@ export default function showDrinkInformation (searchNameResponse) {
         drinkInfo.push(`${instructions} Use ${m1} ${i1}, ${m2} ${i2}`);
       } else if (m1 !== null && i1 !== null) {
         drinkInfo.push(`${instructions} Use ${m1} ${i1}`);
-      } 
+      }
     }
     return drinkInfo;
   }
