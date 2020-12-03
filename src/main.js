@@ -75,6 +75,8 @@ function showDrinkByName (searchNameResponse) {
 }
 
 $(document).ready(function() {
+  const towel =confirm("Do you have your bar towel ready? Click OK for yes or Cancel for no.");
+  if (towel) { 
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
       if(cocktailResponse instanceof Error) {
@@ -100,18 +102,34 @@ $(document).ready(function() {
         if (drinkResponse instanceof Error) {
           throw Error(`CocktailDB API error: ${drinkResponse.message}`);
         }
-        const drinkListByIngredient = drinkResponse.drinks;
-        let drinkArray = displayDrinks(drinkListByIngredient);
-        let drinkCards = cardDisplay(drinkArray);
-        $('#results').html(drinkCards);
-
-        // $("#card-name").click(function() {
-        //   $().toggle();
-        // })
+        getIngredients(cocktailResponse); 
       })
       .catch(function(error) {
         displayErrors(error.message);
       });
+    $('#ingredientsSearchButton').click(function() {
+      event.preventDefault();
+      clearFields();
+      $('#resultsBody').show();
+      //search by API called ingredient
+      let ingredient = $('#ingredients').val();
+      console.log(ingredient);
+      DrinksByIngredient.findDrink(ingredient)
+        .then(function(drinkResponse) {
+          if (drinkResponse instanceof Error) {
+            throw Error(`CocktailDB API error: ${drinkResponse.message}`);
+          }
+          const drinkListByIngredient = drinkResponse.drinks;
+          let drinkArray = displayDrinks(drinkListByIngredient);
+          let drinkCards = cardDisplay(drinkArray);
+          $('#results').html(drinkCards);
+          // $("#card-name").click(function() {
+          //   $().toggle();
+          // })
+        })
+        .catch(function(error) {
+          displayErrors(error.message);
+        });
   });
   $('#nameSearchButton').click(function() {
     event.preventDefault();
@@ -137,5 +155,8 @@ $(document).ready(function() {
       $('#drinkListDisplay').html(`<p>${drinkAndInfo.join(" ")}</p>`); 
     })();
   });
+  else { 
+    alert ("Please grab your bar towel and try again.")
+  }
 });
 
