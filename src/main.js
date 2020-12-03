@@ -23,7 +23,7 @@ function getIngredients(response) { //completed -jc
 
 function cardDisplay(array) {
   const drinkCards = array.map((element) => 
-    `<div class="card">
+    `<div class="card col-3">
       <div class="card-title" id="card-name"> ${element.strDrink} </div>
       <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
     </div>`); 
@@ -33,7 +33,7 @@ function cardDisplay(array) {
 
 function displayDrinks(response) { //does this accurately display drinks?!
   let drinkArray = [];
-  if (response.length< 10) { 
+  if (response.length< 12) { 
     for (let i=0; i< response.length; i++) {
       // $('.drink-results').append(response[i].strDrink);
       drinkArray.push(response[i]);
@@ -43,7 +43,7 @@ function displayDrinks(response) { //does this accurately display drinks?!
     return drinkArray;
   } else {  
     let mySet = new Set(); //empty object
-    for (let i=0; i<10; i++) { 
+    for (let i=0; i<12; i++) { 
       let j = Math.floor(Math.random() * response.length); //random number * length
       if(mySet.has(j)){ 
         i--;
@@ -74,7 +74,6 @@ function showDrinkByName (searchNameResponse) {
   }
 }
 
-
 $(document).ready(function() {
   IngredientService.getAllIngredients()
     .then(function(cocktailResponse) {
@@ -90,6 +89,9 @@ $(document).ready(function() {
     event.preventDefault();
     clearFields();
     $('#resultsBody').show();
+    $('html,body').animate({
+      scrollTop: $("#resultsBody").offset().top},
+      'slow');
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
     console.log(ingredient);
@@ -117,6 +119,9 @@ $(document).ready(function() {
     let drinkName = $('#findDrink').val();
     $("#drinkListDisplay").val();
     $("#resultsBody").show();
+    $('html,body').animate({
+      scrollTop: $("#resultsBody").offset().top},
+      'slow');
     (async function() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
       let drinkList = showDrinkByName(searchNameResponse);
