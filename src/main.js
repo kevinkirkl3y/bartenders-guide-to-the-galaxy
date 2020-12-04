@@ -23,15 +23,15 @@ function getIngredients(response) { //completed -jc
 
 function cardDisplay(array) {
   const drinkCards = array.map((element) => 
-  `<div class="card col-3">
+    `<div class="card col-3">
     <div class="card-title" id="ingToRecipe"> ${element.strDrink} </div>
     <img class="card-img-top" src="${element.strDrinkThumb}" alt="Card image cap">
     <button class="btn btn-sm" value="${element.strDrink}"  type="submit" id="${element.idDrink}">Get Recipe</button>
     <div class="${element.idDrink}"></div>
     </div>`); 
-    return drinkCards;
+  return drinkCards;
 }
- 
+
 function displayDrinks(response) {
   let drinkArray = [];
   if (response.length< 12) { 
@@ -76,7 +76,7 @@ function backToCocktails() {
     $("#results").show();
     $('html,body').animate({
       scrollTop: $("#resultsBody").offset().top},
-      'slow');
+    'slow');
   });
 }
 function recipeButtons (drinkArray) {
@@ -92,7 +92,7 @@ function recipeButtons (drinkArray) {
           <div class="card-body">${drinkInfo}</div>
           <button class="btn btn-sm"  type="submit" id="revert">Back To Cocktails</button>
           </div>`;
- 
+
         $("#drinkListDisplay").html(`${drinkAndInfo}`);
         $("#drinkListDisplay").show(); 
         $("#results").hide();
@@ -104,14 +104,14 @@ function recipeButtons (drinkArray) {
 
 $(document).ready(function() {
   if (window.location.href.match('index.html') != null) {
-  let towel = window.prompt('Do you have your bar towel handy?');
-  switch (towel) {
+    let towel = window.prompt('Do you have your bar towel handy?');
+    switch (towel) {
     case "yes":
-    break;
+      break;
     default:
-    alert("Please grab your bar towel and try again")
-    window.open('https://youtu.be/DgDrHvJ51nw?t=20');
-    break;
+      alert("Please grab your bar towel and try again");
+      window.open('https://youtu.be/DgDrHvJ51nw?t=20');
+      break;
     } 
   }
   IngredientService.getAllIngredients()
@@ -130,7 +130,7 @@ $(document).ready(function() {
     $('#results').show();
     $('html,body').animate({
       scrollTop: $("#resultsBody").offset().top},
-      'slow');
+    'slow');
     //search by API called ingredient
     let ingredient = $('#ingredients').val();
     DrinksByIngredient.findDrink(ingredient)
@@ -147,7 +147,7 @@ $(document).ready(function() {
       .catch(function(error) {
         displayErrors(error.message);
       }); 
-    });
+  });
   $('#nameSearchButton').click(function() {
     event.preventDefault();
     clearFields();
@@ -156,7 +156,7 @@ $(document).ready(function() {
     $("#drinkListDisplay").show();
     $('html,body').animate({
       scrollTop: $("#resultsBody").offset().top},
-      'slow');
+    'slow');
     (async function searchNameResponse() {
       const searchNameResponse = await SearchName.getDrinksByName(drinkName);
       let drinkList = showDrinkByName(searchNameResponse);
