@@ -65,8 +65,6 @@ Team Member Email:
 * _JavaScript_
 * _VSCode_
 
-<br></br>
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Copyright (c) 2020 **_Jeff Chiu, Bess Campbell, Kevin Kirkley, Mandy Otero, Tawnee Harris, Svea Wade, and Danielle Thompson_**
