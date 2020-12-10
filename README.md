@@ -51,7 +51,7 @@ Team Member Email:
 * <kevinmkirkley@gmail.com>
 * <mandystar018@gmail.com>
 * <svealinneawade@gmail.com>
-* <71739178+dani-t-codes@users.noreply.github.com>
+* <danithompson74@gmail.com>
 * <tawneeh@icloud.com>
 
 ## Technologies Used 
