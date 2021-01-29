@@ -1,0 +1,151 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bartender's Guide to the Galaxy</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+</head>
+
+<body> 
+  <div class="questionCard">
+    <h6 class="glow">Bartender's Choice</h6>
+      <div class="container" id="questionnaireStyling">
+        <form id="bartendersChoice">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group"> 
+                <p class="questionLabel">What kind of mood are you in?</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="mood" value="darkBrooding" checked>
+                    Dark & brooding
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="mood" value="brightBubbly">
+                    Bright & bubbly
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="mood" value="contemplative">
+                    Contemplative of your place in the universe
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="mood" value="reckless">
+                    Reckless, like a wrecking ball
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="mood" value="worried">
+                    Oh, no, not again...
+                  </label>
+                </div>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="mood" value="inNeed">
+                    In desperate need of a tropical vacation
+                  </label>
+                </div><br>
+                <p class="questionLabel">Would you like something refreshing, or something rich?</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="refreshingRich" value="refreshing" checked>
+                    Refreshing
+                  </label>
+                  <label>
+                    <input type="radio" name="refreshingRich" value="rich">
+                    Rich
+                  </label>
+                </div><br>
+                <div class="slider" >
+                  <label id="sliderSize" for="price">No ABV - Low ABV - Normal - XTRA Boozy </label>
+                  <p> <input type="range" name="howBoozy" id="howBoozy" min="No booze at all, plz" max="Extra, super boozy" step="1" value="All the booze">
+                  <output class="boozySlider" for="howBoozy"></output> 
+                  </p>
+                </div>
+                <p class="questionLabel">Would you prefer a short or long drink?</p>
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="shortLong" value="short" checked>
+                    Short
+                  </label>
+                  <label>
+                    <input type="radio" name="shortLong" value="long">
+                    Long
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="checkboxes">
+                <label for="spiritChoice" class="questionLabel"> Any spirit in mind? </label><br>
+                <input type="checkbox" name="spiritChoice" value="vodka">  Vodka<br>
+                <input type="checkbox" name="spiritChoice" value="gin">  Gin<br> 
+                <input type="checkbox" name="spiritChoice" value="rum">  Rum<br> 
+                <input type="checkbox" name="spiritChoice" value="bourbon">  Bourbon<br>
+                <input type="checkbox" name="spiritChoice" value="rye">  Rye<br>
+                <input type="checkbox" name="spiritChoice" value="scotch">  Scotch<br>
+                <input type="checkbox" name="spiritChoice" value="lowABV">  Low ABV<br>
+                <input type="checkbox" name="spiritChoice" value="spiritFree">  Spirit-free<br>
+              </div><br>
+              <p class="questionLabel">Any specific flavors in mind?</p>
+              <div class="radio"> 
+                <label>
+                  <input type="radio" name="flavor" value="bitter" checked>
+                  Bitter
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="flavor" value="sweet">
+                  Sweet
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="flavor" value="sour">
+                  Sour
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="flavor" value="herbal">
+                  Herbal
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="flavor" value="umami">
+                  Umami (savory)
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="flavor" value="cool">
+                  Cool
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <input type="radio" name="flavor" value="hot">
+                  Hot
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="questionLabel" for="allergies">Do you have any food allergies?</label><br>
+                <input id="allergies" type="text">
+              </div>
+              <button type="submit" class="search button" id="questionnaireSubmission">Go to the possibility of magic!</button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  <h6><a href="index.html" class="glow">Go Home, Earthling</a></h6>
+<script type="text/javascript" src="bundle.js"></script></body>
+</html>
